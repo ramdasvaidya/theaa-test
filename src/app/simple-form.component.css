@@ -1,0 +1,21 @@
+.form-control label {
+  display: inline-block;
+  width: 20%;
+  padding: 8px 0;
+}
+
+.form-control input {
+  width: 80%;
+}
+
+.form-action {
+  text-align: right;
+}
+
+.input-invalid {
+  border: 2px solid red;
+}
+
+.input-error {
+  color: red;
+}

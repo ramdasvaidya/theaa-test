@@ -1,0 +1,32 @@
+<h1>Angular Test</h1>
+<form #simpleForm="ngForm" (ngSubmit)="simpleForm.valid && angularTestForm(simpleForm.value)">
+  <div>
+    <div class="form-control">
+      <label>Title</label>
+      <select name="title" [(ngModel)]="formValues.title">
+        <option value="">-- Select an option --</option>
+        <option *ngFor="let title of titleValues" value={{title.name}}>{{ title.name }}</option>
+      </select>
+    </div>
+    <div class="form-control">
+      <label>First name</label>
+      <input type="text" placeholder="First name" name="firstName" [(ngModel)]="formValues.firstName"/>
+    </div>
+    <div class="form-control">
+      <label>Last name</label>
+      <input type="text" placeholder="Last name" name="lastName" [(ngModel)]="formValues.lastName"
+      #lastName="ngModel" [ngClass]="{ 'input-invalid': lastName.invalid && (lastName.touched || simpleForm.submitted) }" required/>
+    </div>
+    <div *ngIf="lastName.invalid && (lastName.touched || simpleForm.submitted)" class="input-error">
+      <div *ngIf="lastName.errors.required">* Last name is mandatory</div>
+    </div>
+    <span></span>
+    <div>
+      <input type="checkbox" name="acceptTerms" (change)="acceptTerms(simpleForm.value.acceptTerms)" [(ngModel)]="formValues.acceptTerms"/>
+      <label>I accept the terms & conditions</label>
+    </div>
+    <div class="form-action">
+      <button type="submit" [disabled]="!buttonState">Submit</button>
+    </div>
+  </div>
+</form>
